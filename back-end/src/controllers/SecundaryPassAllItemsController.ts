@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 
 import GetAllItems from "../utils/GetAllItems";
 
-export default class PassAllItemsController {
+export default class SecundaryPassAllItemsController {
   async handle(req: Request, res: Response) {
-    const helper = false;
+    const helper = true;
 
     const items = await GetAllItems(helper);
 

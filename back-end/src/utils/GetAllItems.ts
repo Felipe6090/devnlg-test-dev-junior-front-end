@@ -1,6 +1,6 @@
 import { api } from "../thirdPartyApi";
 
-export default async function GetAllItems() {
+export default async function GetAllItems(formatHelper: boolean) {
   const brazilianProducts = await api.get("brazilian_provider").then((res) => {
     return res.data;
   });
@@ -9,9 +9,9 @@ export default async function GetAllItems() {
     return res.data;
   });
 
-  const allProducts = [brazilianProducts, europeanProducts];
-
-  console.log(allProducts);
+  const allProducts = !formatHelper
+    ? [brazilianProducts, europeanProducts]
+    : brazilianProducts.concat(europeanProducts);
 
   return allProducts;
 }
