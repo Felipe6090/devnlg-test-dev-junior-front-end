@@ -3,21 +3,50 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model User {
   id              String            @id @default(uuid())
-  name            String
+  createdAT       DateTime          @default(now())
+  name            String?
   email           String
   password        String
   registeredCards RegisteredCards[]
+  purchases       Purchases[]
+
+  @@map("users")
 }
 
 model RegisteredCards {
-  id           String   @id @default(uuid())
-  registeredAt DateTime @default(now())
-  User         User?    @relation(fields: [userId], references: [id])
-  userId       String?
+  id             String   @id @default(uuid())
+  createdAT      DateTime @default(now())
+  User           User?    @relation(fields: [userId], references: [id])
+  userId         String?
+  cardNumber     String
+  cardSafetyCode String
+  shelfLifeTime  DateTime
+
+  @@map("cards")
+}
+
+model Purchases {
+  id        String    @id @default(uuid())
+  createdAT DateTime  @default(now())
+  User      User?     @relation(fields: [userId], references: [id])
+  userId    String?
+  products  Product[]
+
+  @@map("purchases")
+}
+
+model Product {
+  id        String      @id @default(uuid())
+  createdAT DateTime    @default(now())
+  name      String
+  price     Float
+  Purchases Purchases[]
+
+  @@map("product")
 }
