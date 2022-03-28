@@ -1,25 +1,42 @@
 import { Request, Response } from "express";
-import { hash } from "bcryptjs";
+import { hash, compare } from "bcryptjs";
+import { sign } from "jsonwebtoken";
 
 import prismaClient from "../prisma";
 
-interface IUserRequest {
+interface IExecute {
   email: string;
   password: string;
 }
 
+interface ICreate {
+  email: string;
+  password: string;
+  passHash: string;
+  userData?: any;
+}
+
+interface ILogin {
+  password: string;
+  passHash: string;
+  userData: any;
+}
 export default class LoginHandler {
-  async execute({ email, password }: IUserRequest) {
-    const userCheck = await prismaClient.user.findFirst({
+  async execute({ email, password }: IExecute) {
+    const userData = await prismaClient.user.findFirst({
       where: { email },
     });
 
-    if (userCheck) {
-      throw new Error("User alredy exists");
-    }
-
     const passHash = await hash(password, 8);
 
+    if (!userData) {
+      return this.createUser({ email, password, passHash });
+    } else {
+      return this.LogUser({ password, passHash, userData });
+    }
+  }
+
+  async createUser({ email, password, passHash, userData }: ICreate) {
     const user = await prismaClient.user.create({
       data: {
         email,
@@ -27,6 +44,23 @@ export default class LoginHandler {
       },
     });
 
-    return user;
+    const result = await this.LogUser({ password, passHash, userData });
+
+    return result;
+  }
+
+  async LogUser({ password, passHash, userData }: ILogin) {
+    const passMatch = compare(password, passHash);
+
+    if (!passMatch) {
+      throw new Error("Incorrect");
+    }
+
+    const token = sign({}, "20cc2efa-141c-4802-bc42-af8245d0984a", {
+      subject: userData.id,
+      expiresIn: "60s",
+    });
+
+    return token;
   }
 }
