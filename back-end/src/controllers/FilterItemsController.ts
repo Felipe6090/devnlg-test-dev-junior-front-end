@@ -1,4 +1,4 @@
-import FilterItemsService from "../services/FilterItemsService";
+import FilterItemsService from "../utils/FilterService";
 
 import { Request, Response } from "express";
 

@@ -1,21 +1,11 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 
-import { useRouter } from "next/router";
+import ProductItemProvider from "../../src/contexts/productItemContext";
+
+import ProductPage from "../../src/screens/ProductPage";
 
 import { api } from "../../src/services/api";
 import { ISecundaryProductsList } from "../../src/types/apiResponseTypes";
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { params } = context;
-
-  const data = await api.get(`/takeProduct/${params.product}`);
-
-  return {
-    props: {
-      productData: data.data,
-    },
-  };
-};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await api.get("/secundaryGetAll");
@@ -34,12 +24,28 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { product } = context.params!;
+
+  const data = await api.get(`/takeProduct/${product}`);
+
+  return {
+    props: {
+      productData: data.data,
+    },
   };
 };
 
 export default function Product({
   productData,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <h1>{productData.name || productData.nome}</h1>;
+  return (
+    <ProductItemProvider state={productData}>
+      <ProductPage />
+    </ProductItemProvider>
+  );
 }

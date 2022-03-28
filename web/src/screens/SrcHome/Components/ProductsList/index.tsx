@@ -36,6 +36,8 @@ function ProductsList() {
         </S.DefaultRow>
         <S.ProductsRow>
           {brazilianProducts.map((product: IBrazilianProducts) => {
+            const linkHelper = product.nome.replace(/\s/g, "-");
+
             return (
               <S.ProductDiv key={product.id}>
                 <Image
@@ -51,7 +53,7 @@ function ProductsList() {
 
                 <T.ProductPrice>R$ {product.preco} </T.ProductPrice>
 
-                <Link href="/" replace passHref>
+                <Link href={`/products/${linkHelper}`} replace passHref>
                   <T.DefaultLink>Ver Produto</T.DefaultLink>
                 </Link>
               </S.ProductDiv>
@@ -70,6 +72,8 @@ function ProductsList() {
         </S.DefaultRow>
         <S.ProductsRow>
           {europeanProducts.map((product: IEuropeanProducts) => {
+            const linkHelper = product.name.replace(/\s/g, "-");
+
             return (
               <S.ProductDiv key={product.id}>
                 <Image
@@ -85,7 +89,7 @@ function ProductsList() {
 
                 <T.ProductPrice>R$ {product.price} </T.ProductPrice>
 
-                <Link href="/" replace passHref>
+                <Link href={`/products/${linkHelper}`} replace passHref>
                   <T.DefaultLink>Ver Produto</T.DefaultLink>
                 </Link>
               </S.ProductDiv>

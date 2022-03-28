@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import TakeOneProductService from "../services/TakeOneProductService";
+import TakeOneProductService from "../utils/TakeOneProductService";
 import { IBrazilianProducts, IEuropeanProducts } from "../types/ProductsTypes";
 
 export default class TakeOneProductController {

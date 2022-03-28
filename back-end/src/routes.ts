@@ -1,26 +1,24 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 
 import FilterItemsController from "./controllers/FilterItemsController";
 
-import PassAllItemsController from "./controllers/PassAllItemsController";
+import PassAllItemsHandler from "./controllers/PassAllItemsHandler";
 
-import SecundaryPassAllItemsController from "./controllers/SecundaryPassAllItemsController";
-
-import TakeOneProductController from "./controllers/TakeOneProductController";
+import TakeOneProductController from "./controllers/TakeProductItem";
 
 const filterItemsController = new FilterItemsController();
 
-const passAllItemsController = new PassAllItemsController();
-
-const secundaryPassAllItemsController = new SecundaryPassAllItemsController();
+const passAllItemsHandler = new PassAllItemsHandler();
 
 const takeOneProductController = new TakeOneProductController();
 
+//
+
 const routes = Router();
 
-routes.get("/getAll", passAllItemsController.handle);
+routes.get("/getAll", passAllItemsHandler.defaultFormart);
 
-routes.get("/secundaryGetAll", secundaryPassAllItemsController.handle);
+routes.get("/secundaryGetAll", passAllItemsHandler.alternativeFormat);
 
 routes.get("/filter", filterItemsController.handle);
 

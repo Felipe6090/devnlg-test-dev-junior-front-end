@@ -1,4 +1,4 @@
-import GetAllItems from "../utils/GetAllItems";
+import GetAllItems from "./GetAllItems";
 
 import {
   ISecundaryProductsList,

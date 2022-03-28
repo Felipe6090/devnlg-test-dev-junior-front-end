@@ -1,5 +1,5 @@
 import { IEuropeanProducts } from "../types/ProductsTypes";
-import GetAllItems from "../utils/GetAllItems";
+import GetAllItems from "./GetAllItems";
 
 type IParams = {
   price?: Number;

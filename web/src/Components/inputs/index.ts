@@ -6,6 +6,7 @@ type StyledProps = {
   margin?: number;
   marginLeft?: string;
   contactType?: string;
+  border?: boolean;
 };
 
 export const SeeAllButton = styled.a`
@@ -162,6 +163,8 @@ export const BlueButton = styled.button`
     transform: scale(0.98);
     transition: linear 0.2s;
   }
+
+  margin-left: ${(props: StyledProps) => props.marginLeft || 0};
 `;
 
 export const SeachInput = styled.input`
@@ -191,12 +194,9 @@ export const SeachInput = styled.input`
 `;
 
 export const ContactInputs = styled.input`
-  width: 95%;
-
-  height: ${(props: StyledProps) =>
+   height: ${(props: StyledProps) =>
     props.contactType == "message" ? "80px" : "50px"};
 
-  border: none;
   outline: none;
 
   padding: 0 25px;
@@ -214,4 +214,7 @@ export const ContactInputs = styled.input`
 
     vertical-align: top;
   }
+
+  border: ${(props: StyledProps) =>
+    props.border ? "1px solid #A2A2A2" : "none"};
 `;
