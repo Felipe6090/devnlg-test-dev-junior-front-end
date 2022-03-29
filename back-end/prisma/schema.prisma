@@ -15,6 +15,8 @@ model User {
   password        String
   registeredCards RegisteredCards[]
   purchases       Purchases[]
+  adress          Adress[]
+  refreshToken    RefreshToken?
 
   @@map("users")
 }
@@ -49,4 +51,25 @@ model Product {
   Purchases Purchases[]
 
   @@map("product")
+}
+
+model Adress {
+  id         String  @id @default(uuid())
+  streetName String
+  homeNumber String
+  zipCode    String
+  Reference  String?
+  User       User?   @relation(fields: [userId], references: [id])
+  userId     String?
+
+  @@map("adress")
+}
+
+model RefreshToken {
+  id        String  @id @default(uuid())
+  expiresIn Int
+  user      User?   @relation(fields: [userId], references: [id])
+  userId    String?
+
+  @@map("refreshToken")
 }

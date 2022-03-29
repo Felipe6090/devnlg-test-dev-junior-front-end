@@ -1,36 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `Product` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Purchases` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `RegisteredCards` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE `Purchases` DROP FOREIGN KEY `Purchases_userId_fkey`;
-
--- DropForeignKey
-ALTER TABLE `RegisteredCards` DROP FOREIGN KEY `RegisteredCards_userId_fkey`;
-
--- DropForeignKey
-ALTER TABLE `_ProductToPurchases` DROP FOREIGN KEY `_producttopurchases_ibfk_1`;
-
--- DropForeignKey
-ALTER TABLE `_ProductToPurchases` DROP FOREIGN KEY `_producttopurchases_ibfk_2`;
-
--- DropTable
-DROP TABLE `Product`;
-
--- DropTable
-DROP TABLE `Purchases`;
-
--- DropTable
-DROP TABLE `RegisteredCards`;
-
--- DropTable
-DROP TABLE `User`;
-
 -- CreateTable
 CREATE TABLE `users` (
     `id` VARCHAR(191) NOT NULL,
@@ -73,11 +40,48 @@ CREATE TABLE `product` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+-- CreateTable
+CREATE TABLE `adress` (
+    `id` VARCHAR(191) NOT NULL,
+    `streetName` VARCHAR(191) NOT NULL,
+    `homeNumber` VARCHAR(191) NOT NULL,
+    `zipCode` VARCHAR(191) NOT NULL,
+    `Reference` VARCHAR(191) NULL,
+    `userId` VARCHAR(191) NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `refreshToken` (
+    `id` VARCHAR(191) NOT NULL,
+    `expiresIn` INTEGER NOT NULL,
+    `userId` VARCHAR(191) NULL,
+
+    UNIQUE INDEX `refreshToken_userId_key`(`userId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `_ProductToPurchases` (
+    `A` VARCHAR(191) NOT NULL,
+    `B` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `_ProductToPurchases_AB_unique`(`A`, `B`),
+    INDEX `_ProductToPurchases_B_index`(`B`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 -- AddForeignKey
 ALTER TABLE `cards` ADD CONSTRAINT `cards_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `purchases` ADD CONSTRAINT `purchases_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `adress` ADD CONSTRAINT `adress_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `refreshToken` ADD CONSTRAINT `refreshToken_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `_ProductToPurchases` ADD FOREIGN KEY (`A`) REFERENCES `product`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

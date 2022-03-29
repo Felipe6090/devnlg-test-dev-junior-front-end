@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
 import { hash, compare } from "bcryptjs";
-import { sign } from "jsonwebtoken";
 
 import prismaClient from "../prisma";
+import GenerateRefreshToken from "../providers/GenerateRefreshToken";
+import GenerateToken from "../providers/GenerateToken";
 
 interface IExecute {
   email: string;
@@ -36,7 +36,7 @@ export default class LoginHandler {
     }
   }
 
-  async createUser({ email, password, passHash, userData }: ICreate) {
+  async createUser({ email, password, passHash }: ICreate) {
     const user = await prismaClient.user.create({
       data: {
         email,
@@ -44,7 +44,7 @@ export default class LoginHandler {
       },
     });
 
-    const result = await this.LogUser({ password, passHash, userData });
+    const result = await this.LogUser({ password, passHash, userData: user });
 
     return result;
   }
@@ -56,11 +56,16 @@ export default class LoginHandler {
       throw new Error("Incorrect");
     }
 
-    const token = sign({}, "20cc2efa-141c-4802-bc42-af8245d0984a", {
-      subject: userData.id,
-      expiresIn: "60s",
-    });
+    const userId = userData.id;
 
-    return token;
+    const generateToken = new GenerateToken();
+
+    const token = await generateToken.execute(userId);
+
+    const generateRefreshToken = new GenerateRefreshToken();
+
+    const refreshToken = await generateRefreshToken.execute(userId);
+
+    return { token, refreshToken };
   }
 }
