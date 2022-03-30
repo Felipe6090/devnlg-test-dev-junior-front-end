@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useState, createContext, useEffect } from "react";
+import { api } from "../../../pages/api/api";
 
-import ProductsListContext from "./productsListContext";
+import { IProductsList } from "../../types/apiResponseTypes";
 
-type ITypes = {
-  children: JSX.Element | JSX.Element[];
-  state: any;
+type ContextType = {
+  productsList: any;
 };
 
-export default function ProductsListProvider({ children, state }: ITypes) {
-  const [productsHandler, setProductsHandler] = useState(state);
+type IChildren = {
+  children: JSX.Element | JSX.Element[];
+  data: any;
+};
+
+export const ProductsListContext = createContext({} as ContextType);
+
+export default function ProductsListProvider({ children, data }: IChildren) {
+  const [productsList, setProductsList] = useState(data);
 
   return (
-    <ProductsListContext.Provider value={productsHandler}>
+    <ProductsListContext.Provider value={{ productsList }}>
       {children}
     </ProductsListContext.Provider>
   );

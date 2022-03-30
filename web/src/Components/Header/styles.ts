@@ -6,4 +6,6 @@ export const HeaderMainDiv = styled.div`
   gap: 50px;
 
   padding: 20px 40px;
+
+  align-items: center;
 `;

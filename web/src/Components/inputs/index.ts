@@ -96,6 +96,12 @@ export const OutlinedButton = styled.button`
   margin-left: ${(props: StyledProps) => props.marginLeft || 0};
 `;
 
+export const UserIconDiv = styled.div`
+  cursor: pointer;
+
+  margin-left: auto;
+`;
+
 export const BlueButton = styled.button`
   width: ${(props: StyledProps) =>
     props.size == "large"
@@ -194,7 +200,7 @@ export const SeachInput = styled.input`
 `;
 
 export const ContactInputs = styled.input`
-   height: ${(props: StyledProps) =>
+  height: ${(props: StyledProps) =>
     props.contactType == "message" ? "80px" : "50px"};
 
   outline: none;

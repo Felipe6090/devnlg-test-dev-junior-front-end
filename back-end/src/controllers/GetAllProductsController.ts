@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import GetAllItems from "../utils/GetAllItems";
+import GetAllItems from "../services/GetAllProductsService";
 
 export default class PassAllItemsController {
   async defaultFormart(req: Request, res: Response) {

@@ -1,17 +1,27 @@
-import { useState } from "react";
-import AuthContext from "./AuthContext";
+import { useState, createContext, Dispatch } from "react";
+import { IUserData } from "../../types/userDataType";
 
-type ITypes = {
+type IProviderTypes = {
   children: JSX.Element | JSX.Element[];
-  state: any;
+  state?: any;
 };
 
-export default function AuthProvider({ children, state }: ITypes) {
-  const [productHandler, setProductHandler] = useState(state);
+type AuthContextType = {
+  authData: IUserData;
+
+  setAuthData: Dispatch<any>;
+};
+
+const AuthContext = createContext({} as AuthContextType);
+
+function AuthProvider({ children, state }: IProviderTypes) {
+  const [authData, setAuthData] = useState(state);
 
   return (
-    <AuthContext.Provider value={productHandler}>
+    <AuthContext.Provider value={{ authData, setAuthData }}>
       {children}
     </AuthContext.Provider>
   );
 }
+
+export { AuthProvider, AuthContext };

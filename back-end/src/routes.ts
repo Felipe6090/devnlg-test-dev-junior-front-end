@@ -1,20 +1,28 @@
 import { Router } from "express";
 
-import FilterItemsController from "./controllers/FilterItemsController";
+import PassAllItemsHandler from "./controllers/GetAllProductsController";
 
-import PassAllItemsHandler from "./controllers/PassAllItemsHandler";
-
-import TakeOneProductController from "./controllers/TakeProductItem";
+import TakeOneProductController from "./controllers/TakeOneProductController";
 
 import LoginController from "./controllers/LoginController";
 
-const filterItemsController = new FilterItemsController();
+import RefreshTokenController from "./controllers/RefreshTokenController";
+
+import GetUserDataController from "./controllers/GetUserDataController";
+
+import GetAllUsersDataController from "./controllers/GetAllUsersDataController";
 
 const passAllItemsHandler = new PassAllItemsHandler();
 
 const takeOneProductController = new TakeOneProductController();
 
 const loginController = new LoginController();
+
+const refreshTokenController = new RefreshTokenController();
+
+const getUserDataController = new GetUserDataController();
+
+const getAllUsersDataController = new GetAllUsersDataController();
 
 //
 
@@ -24,12 +32,14 @@ routes.get("/getAll", passAllItemsHandler.defaultFormart);
 
 routes.get("/secundaryGetAll", passAllItemsHandler.alternativeFormat);
 
-routes.get("/filter", filterItemsController.handle);
-
-routes.get("/takeProduct/:product", takeOneProductController.handle);
-
 routes.get("/takeProduct/:product", takeOneProductController.handle);
 
 routes.post("/login", loginController.login);
+
+routes.post("/refreshToken", refreshTokenController.handle);
+
+routes.post("/getUserData", getUserDataController.handle);
+
+routes.get("/getAllUsers", getAllUsersDataController.handle);
 
 export { routes };

@@ -1,28 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Products from "../../../../mocks/productsList";
-
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import * as S from "./styles";
 import * as T from "../../../../Components/Typography";
 import * as I from "../../../../Components/inputs";
 
-import ProductsListContext from "../../../../contexts/productsListContext/productsListContext";
+import { ProductsListContext } from "../../../../contexts/productsListContext";
 
 import {
   IBrazilianProducts,
   IEuropeanProducts,
-  IProductsList,
 } from "../../../../types/apiResponseTypes";
 
 function ProductsList() {
-  const data: IProductsList = useContext(ProductsListContext);
+  const { productsList } = useContext(ProductsListContext);
 
-  const brazilianProducts: IBrazilianProducts[] = data[0];
+  const brazilianProducts: IBrazilianProducts[] = productsList[0];
 
-  const europeanProducts: IEuropeanProducts[] = data[1];
+  const europeanProducts: IEuropeanProducts[] = productsList[1];
 
   return (
     <S.MainDiv>
@@ -42,6 +39,7 @@ function ProductsList() {
               <S.ProductDiv key={product.id}>
                 <Image
                   loader={() => product.imagem}
+                  unoptimized
                   src={product.imagem}
                   alt={product.nome}
                   layout="fixed"
@@ -78,6 +76,7 @@ function ProductsList() {
               <S.ProductDiv key={product.id}>
                 <Image
                   loader={() => product.gallery[0]}
+                  unoptimized
                   src={product.gallery[0]}
                   alt={product.name}
                   layout="fixed"

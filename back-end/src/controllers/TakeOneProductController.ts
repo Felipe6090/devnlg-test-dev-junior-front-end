@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 
-import TakeOneProductService from "../utils/TakeOneProductService";
-import { IBrazilianProducts, IEuropeanProducts } from "../types/ProductsTypes";
+import TakeOneProductService from "../services/TakeOneProductService";
 
 export default class TakeOneProductController {
   async handle(req: Request, res: Response) {

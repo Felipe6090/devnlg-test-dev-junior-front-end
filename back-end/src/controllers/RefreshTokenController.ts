@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import RefreshTokenHandler from "../utils/RefreshTokenHandler";
+import RefreshTokenService from "../services/RefreshTokenService";
 
 export default class RefreshTokenController {
   async handle(req: Request, res: Response) {
     const { refreshToken } = req.body;
 
-    const handler = new RefreshTokenHandler();
+    const handler = new RefreshTokenService();
 
     const token = await handler.execute(refreshToken);
 

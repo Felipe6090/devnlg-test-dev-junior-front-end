@@ -4,7 +4,7 @@ import ProductItemProvider from "../../src/contexts/productItemContext";
 
 import ProductPage from "../../src/screens/ProductPage";
 
-import { api } from "../../src/services/api";
+import { api } from "../api/api";
 import { ISecundaryProductsList } from "../../src/types/apiResponseTypes";
 
 export const getStaticPaths: GetStaticPaths = async () => {
