@@ -1,26 +1,26 @@
-### devnlg-test-dev-junior-front-end
+# devnlg-test-dev-junior-front-end
 
-## Geral
+# Geral
 
-# Este projeto é parte de um processo seletivo para uma vaga para dev junior
+## Este projeto é parte de um processo seletivo para uma vaga para dev junior
 
 ## Tecnologias usada e Observações
 
 Decidi por usar nextJS para desenvolver o projeto no front e, node com express para o back
 
-# Infelizmente não consegui terminar o projeto a tempo
+### Infelizmente não consegui terminar o projeto a tempo
 
 Com certeza o projeto não está nem perto de estar pronto, mas como eu recebi a oportunidade de participar do processo seletivo no dia 15/03 e, por conta de alguns acontecimentos, só pude começar no dia 21.
 
-# Serviço de filtro e de compra não foram feitos
+### Serviço de filtro e de compra não foram feitos
 
 para ser mais exato neste commit eu estava fazendo o getStaticPathS da página do perfil do usuario, acho que precisaria de mais uma semana para deixar o projeto redondo, sem bug, com a melhor otimização que o NextJs pode oferecer e com o docker-compose e os docker-files prontos.
 
-# Se tiver interresse tenho alguns projetos com docker compose no meu github!
+## Se tiver interresse tenho alguns projetos com docker compose no meu github!
 
 utilizei styled components para a estilização, pois é a melhor opção na minha opnião
 
-## Coisa que irei fazer no projeto
+# Coisa que irei fazer no projeto
 
 -focar totalmente no front-end/design, terminar todas as telas e implementar as funcionalidades no back, pelo tempo disponivel acabei trabalhando no back e front ao mesmo tempo, isso deixa as coisas um pouco confusas.
 
