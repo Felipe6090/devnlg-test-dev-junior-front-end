@@ -1,4 +1,4 @@
-# devnlg-test-dev-junior-front-end
+### devnlg-test-dev-junior-front-end
 
 ## Geral
 
@@ -22,16 +22,16 @@ utilizei styled components para a estilização, pois é a melhor opção na min
 
 ## Coisa que irei fazer no projeto
 
--focaria totalmente no front-end/design, terminaria todas as telas e depois implementaria as funcionalidades no back, pelo tempo disponivel acabei trabalhando no back e fron ao mesmo tempo, isso deixa as coisas um pouco confusas.
+-focar totalmente no front-end/design, terminar todas as telas e implementar as funcionalidades no back, pelo tempo disponivel acabei trabalhando no back e front ao mesmo tempo, isso deixa as coisas um pouco confusas.
 
 - depois de todas as funcionalidades estarem rodando 100% pretendo focar em refatorar e usar melhor os recursos do next.
 
 
-# Documentação no postman das rotas do em relação ao back-end:
+## Documentação no postman das rotas do em relação ao back-end:
 - https://go.postman.co/workspace/My-Workspace~911c1026-49f5-4d25-8d01-70ca4b57ccb4/collection/20287582-8663f1f3-2313-4a61-a472-cd3a9c90a8ad?action=share&creator=20287582
 
 
-## Como testar
+### Como testar
 
 ## É nescessario ter docker para rodar o banco de dados!!
 
@@ -49,7 +49,7 @@ como não tive tempo de fazer um docker compose, você poder rodar o BD assim:
 
 - após isso terá que ser executado um comando para configurar o prisma, mas isso fica para depois
 
-## Rodando o Back e o Front
+### Rodando o Back e o Front
 
 - Clone o repositorio;
 
