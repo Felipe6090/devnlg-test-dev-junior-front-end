@@ -10,6 +10,22 @@ Decidi por usar nextJS para desenvolver o projeto no front e, node com express p
 
 # Infelizmente não consegui terminar o projeto a tempo
 
+Com certeza o projeto não está nem perto de estar pronto, mas como eu recebi a oportunidade de participar do processo seletivo no dia 15/03 e, por conta de alguns acontecimentos, só pude começar no dia 21.
+
+# Serviço de filtro e de compra não foram feitos
+
+para ser mais exato neste commit eu estava fazendo o getStaticPathS da página do perfil do usuario, acho que precisaria de mais uma semana para deixar o projeto redondo, sem bug, com a melhor otimização que o NextJs pode oferecer e com o docker-compose e os docker-files prontos.
+
+# Se tiver interresse tenho alguns projetos com docker compose no meu github!
+
+utilizei styled components para a estilização, pois é a melhor opção na minha opnião
+
+## Coisa que irei fazer no projeto
+
+-focaria totalmente no front-end/design, terminaria todas as telas e depois implementaria as funcionalidades no back, pelo tempo disponivel acabei trabalhando no back e fron ao mesmo tempo, isso deixa as coisas um pouco confusas.
+
+- depois de todas as funcionalidades estarem rodando 100% pretendo focar em refatorar e usar melhor os recursos do next.
+
 
 # Documentação no postman das rotas do em relação ao back-end:
 - https://go.postman.co/workspace/My-Workspace~911c1026-49f5-4d25-8d01-70ca4b57ccb4/collection/20287582-8663f1f3-2313-4a61-a472-cd3a9c90a8ad?action=share&creator=20287582
